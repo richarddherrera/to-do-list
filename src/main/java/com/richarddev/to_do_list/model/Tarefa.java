@@ -1,5 +1,6 @@
 package com.richarddev.to_do_list.Model;
 
+import com.richarddev.to_do_list.DTO.DadosTarefaCreate;
 import com.richarddev.to_do_list.Enums.PrioridadeTarefa;
 import com.richarddev.to_do_list.Enums.StatusTarefa;
 import jakarta.persistence.*;
@@ -34,4 +35,13 @@ public class Tarefa {
 
     @Enumerated(EnumType.STRING)
     private PrioridadeTarefa prioridade;
+
+    public Tarefa(DadosTarefaCreate dados) {
+        this.titulo = dados.titulo();
+        this.descricao = dados.descricao();
+        this.status = dados.status();
+        this.data_criacao = LocalDate.now();
+        this.prazo = dados.prazo();
+        this.prioridade = dados.prioridade();
+    }
 }
