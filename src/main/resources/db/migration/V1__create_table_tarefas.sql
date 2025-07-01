@@ -1,0 +1,9 @@
+CREATE TABLE tarefas (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(255) NOT NULL,
+    descricao VARCHAR(255) NOT NULL,
+    data_criacao DATE NOT NULL,
+    prazo DATE NOT NULL,
+    prioridade ENUM('ALTA', 'BAIXA', 'MEDIA') NOT NULL,
+    status ENUM('CONCLUIDA', 'EM_ANDAMENTO', 'PENDENTE') NOT NULL
+) ENGINE=InnoDB;
