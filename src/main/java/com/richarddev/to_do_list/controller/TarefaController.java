@@ -16,6 +16,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/tarefas")
 public class TarefaController {
@@ -30,9 +34,11 @@ public class TarefaController {
     }
 
     @GetMapping
-    public Page<DadosTarefaRead> listar(
-            @PageableDefault(size = 10, sort = "prioridade", direction = Sort.Direction.DESC) Pageable paginacao) {
-        return tarefaRepository.findAll(paginacao).map(DadosTarefaRead::new);
+    public List<DadosTarefaRead> listar() {
+        return tarefaRepository.findAll().stream()
+                .sorted(Comparator.comparingInt(t -> ((Tarefa) t).getPrioridade().getOrder()).reversed())
+                .map(DadosTarefaRead::new)
+                .collect(Collectors.toList());
     }
 
 }
