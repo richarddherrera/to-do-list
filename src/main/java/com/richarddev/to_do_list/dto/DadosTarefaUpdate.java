@@ -15,5 +15,5 @@ public record DadosTarefaUpdate(
         StatusTarefa status,
         LocalDate prazo,
         PrioridadeTarefa prioridade) {
-    
+
 }
