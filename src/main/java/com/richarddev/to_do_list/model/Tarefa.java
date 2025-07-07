@@ -1,9 +1,11 @@
 package com.richarddev.to_do_list.Model;
 
 import com.richarddev.to_do_list.DTO.DadosTarefaCreate;
+import com.richarddev.to_do_list.DTO.DadosTarefaUpdate;
 import com.richarddev.to_do_list.Enums.PrioridadeTarefa;
 import com.richarddev.to_do_list.Enums.StatusTarefa;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -53,5 +55,24 @@ public class Tarefa {
         this.data_criacao = LocalDate.now();
         this.prazo = dados.prazo();
         this.prioridade = dados.prioridade();
+    }
+
+    public void atualizarDadosTarefa(@Valid DadosTarefaUpdate dados){
+        if (dados.titulo() != null){
+            this.titulo = dados.titulo();
+        }
+        if (dados.descricao() != null){
+            this.descricao = dados.descricao();
+        }
+        if (dados.status() != null){
+            this.status = dados.status();
+        }
+        if(dados.prazo() != null){
+            this.prazo = dados.prazo();
+        }
+        if (dados.prioridade() != null){
+            this.prioridade = dados.prioridade();
+        }
+
     }
 }
