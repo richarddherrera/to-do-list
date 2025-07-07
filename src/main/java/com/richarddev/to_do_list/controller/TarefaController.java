@@ -49,5 +49,10 @@ public class TarefaController {
         tarefa.atualizarDadosTarefa(dados);
     }
 
+    @DeleteMapping("/{id}") // Parâmetro dinâmicp
+    @Transactional
+    public void excluir(@PathVariable Long id){ // Pega o numero da url na requisiçao e coloque ele como parâmetro
+        tarefaRepository.deleteById(id);
+    }
 
 }
