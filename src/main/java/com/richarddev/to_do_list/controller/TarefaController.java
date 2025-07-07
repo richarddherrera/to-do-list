@@ -4,6 +4,7 @@ package com.richarddev.to_do_list.Controller;
 
 import com.richarddev.to_do_list.DTO.DadosTarefaCreate;
 import com.richarddev.to_do_list.DTO.DadosTarefaRead;
+import com.richarddev.to_do_list.DTO.DadosTarefaUpdate;
 import com.richarddev.to_do_list.Enums.PrioridadeTarefa;
 import com.richarddev.to_do_list.Model.Tarefa;
 import com.richarddev.to_do_list.Repository.TarefaRepository;
@@ -40,5 +41,13 @@ public class TarefaController {
                 .map(DadosTarefaRead::new)
                 .collect(Collectors.toList());
     }
+
+    @PutMapping
+    @Transactional
+    public void atualizarTarefa (@RequestBody @Valid DadosTarefaUpdate dados){
+        var tarefa = tarefaRepository.getReferenceById(dados.id());
+        tarefa.atualizarDadosTarefa(dados);
+    }
+
 
 }
